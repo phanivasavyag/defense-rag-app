@@ -8,32 +8,35 @@ st.set_page_config(page_title="Defense SOP Intelligence Assistant")
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
-    background: linear-gradient(
-        rgba(0,0,0,0.6),
-        rgba(0,0,0,0.6)
-    ),
-    url("https://static.vecteezy.com/system/resources/previews/060/002/644/non_2x/soldier-using-futuristic-hud-in-a-military-operation-at-sunset-free-photo.jpg");
+    background: 
+        linear-gradient(
+            rgba(0,0,0,0.8),
+            rgba(0,0,0,0.9)
+        ),
+        url("https://images.unsplash.com/photo-1581090700227-1e8e6d3c3f03");
 
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
-/* Center container */
 .block-container {
-    max-width: 800px;
+    max-width: 850px;
     margin: auto;
-    background-color: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(12px);
     padding: 2rem;
     border-radius: 15px;
 }
 
 /* Answer box */
 .answer-box {
-    background-color: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.75);
     padding: 15px;
     border-radius: 10px;
     border-left: 4px solid #00ffcc;
     color: white;
+    box-shadow: 0 0 10px rgba(0,255,204,0.2);
 }
 
 /* FULL chat input container */
