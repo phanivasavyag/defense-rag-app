@@ -35,6 +35,29 @@ st.markdown("""
     border-left: 4px solid #00ffcc;
     color: white;
 }
+/* Chat input box */
+section[data-testid="stChatInput"] textarea {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    border: 1px solid #00ffcc !important;
+    border-radius: 10px !important;
+}
+
+/* Remove red border (focus) */
+section[data-testid="stChatInput"] textarea:focus {
+    border: 1px solid #00ffcc !important;
+    box-shadow: none !important;
+}
+
+/* Placeholder text */
+section[data-testid="stChatInput"] textarea::placeholder {
+    color: #cccccc !important;
+}
+section[data-testid="stChatInput"] textarea {
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,255,204,0.5) !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
