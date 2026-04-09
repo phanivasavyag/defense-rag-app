@@ -59,14 +59,17 @@ query = st.chat_input("Ask your question...")
 
 # Handle query
 if query:
-    with st.spinner("Searching..."):
-        result = qa(query)
+    questions = [q.strip() for q in query.split("\n") if q.strip()]
 
-        st.session_state.chat_history.append({
-            "question": query,
-            "answer": result["result"],
-            "sources": result["source_documents"]
-        })
+    for q in questions:
+        with st.spinner(f"Searching for: {q}"):
+            result = qa(q)
+
+            st.session_state.chat_history.append({
+                "question": q,
+                "answer": result["result"],
+                "sources": result["source_documents"]
+            })
 
 # Display chat history
 for chat in st.session_state.chat_history:
