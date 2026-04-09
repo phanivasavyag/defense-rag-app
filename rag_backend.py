@@ -10,38 +10,22 @@ def build_rag_pipeline():
     # Load PDFs
     for file in os.listdir("data"):
         if file.endswith(".pdf"):
-            reader = PdfReader(f"data/{file}")
-            text = ""
+            loader = PyPDFLoader(f"data/{file}")
+            docs = loader.load()
 
-            for page in reader.pages:
-                if page.extract_text():
-                    text += page.extract_text()
+            # Add source metadata
+            for d in docs:
+                d.metadata["source"] = file
 
-            # ✅ Attach metadata (file name)
-            documents.append(
-                Document(
-                    page_content=text,
-                    metadata={"source": file}
-                )
-            )
+            documents.extend(docs)
 
-    # Split manually (IMPORTANT: keep metadata)
+    # Split documents
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100
     )
 
-    chunks = []
-    for doc in documents:
-        split_texts = splitter.split_text(doc.page_content)
-
-        for chunk in split_texts:
-            chunks.append(
-                Document(
-                    page_content=chunk,
-                    metadata=doc.metadata  # ✅ keep source
-                )
-            )
+    chunks = splitter.split_documents(documents)
 
     # Embeddings
     embeddings = HuggingFaceEmbeddings(
