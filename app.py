@@ -39,7 +39,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # UI
-st.title("🛡️ Defense SOP Intelligence Assistant")
+st.title("Defense SOP Intelligence Assistant")
 st.caption("RAG-based SOP retrieval system")
 st.info("Uses public SOP documents for decision support.")
 
