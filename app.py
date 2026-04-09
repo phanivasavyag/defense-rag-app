@@ -59,14 +59,14 @@ if query:
         result = qa(query)
 
         # Answer
-        st.subheader("📌 Answer")
+        st.subheader("Answer")
         st.markdown(
             f'<div class="answer-box">{result["result"]}</div>',
             unsafe_allow_html=True
         )
 
         # Sources (FIXED - NO DUPLICATES)
-        st.subheader("📄 Sources")
+        st.subheader("Sources")
 
         if result["source_documents"]:
             shown = set()   # ✅ removes duplicates
@@ -75,7 +75,7 @@ if query:
                 source = doc.metadata.get("source", "Unknown")
 
                 if source not in shown:
-                    st.markdown(f"• 📘 **{source}**")
+                    st.markdown(f"• **{source}**")
                     shown.add(source)
 
         else:
