@@ -36,25 +36,37 @@ st.markdown("""
     color: white;
 }
 
-/* Chat input FULL control */
-section[data-testid="stChatInput"] textarea {
-    background: rgba(0, 0, 0, 0.6) !important;
-    color: white !important;
+/* FULL chat input container */
+section[data-testid="stChatInput"] > div {
     border: 1px solid #00ffcc !important;
     border-radius: 12px !important;
-    padding: 10px !important;
+    background: rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Remove red focus border */
-section[data-testid="stChatInput"] textarea:focus {
-    border: 1px solid #00ffcc !important;
-    box-shadow: none !important;
+/* Text area */
+section[data-testid="stChatInput"] textarea {
+    background: transparent !important;
+    color: white !important;
+    border: none !important;
     outline: none !important;
 }
 
-/* Placeholder text */
+/* Remove red focus */
+section[data-testid="stChatInput"] > div:focus-within {
+    border: 1px solid #00ffcc !important;
+    box-shadow: none !important;
+}
+
+/* Placeholder */
 section[data-testid="stChatInput"] textarea::placeholder {
     color: #bbbbbb !important;
+}
+
+/* Send button */
+section[data-testid="stChatInput"] button {
+    background-color: #00ffcc !important;
+    color: black !important;
+    border-radius: 8px !important;
 }
 </style>
 """, unsafe_allow_html=True)
