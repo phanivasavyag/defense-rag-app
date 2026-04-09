@@ -7,41 +7,55 @@ st.set_page_config(page_title="Defense SOP Intelligence Assistant")
 # Background + overlay
 st.markdown("""
 <style>
-
-/* PREMIUM DEFENSE BACKGROUND */
 [data-testid="stAppViewContainer"] {
-    background: 
-        linear-gradient(
-            rgba(0,0,0,0.75),
-            rgba(0,0,0,0.9)
-        ),
-        url("https://images.unsplash.com/photo-1535223289827-42f1e9919769");
+    background: linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    ),
+    url("https://static.vecteezy.com/system/resources/previews/060/002/644/non_2x/soldier-using-futuristic-hud-in-a-military-operation-at-sunset-free-photo.jpg");
 
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
 }
 
-/* CENTER PANEL */
+/* Center container */
 .block-container {
-    max-width: 850px;
+    max-width: 800px;
     margin: auto;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,0.5);
     padding: 2rem;
     border-radius: 15px;
 }
 
-/* ANSWER BOX */
+/* Answer box */
 .answer-box {
-    background: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.7);
     padding: 15px;
     border-radius: 10px;
     border-left: 4px solid #00ffcc;
     color: white;
-    box-shadow: 0 0 12px rgba(0,255,204,0.2);
 }
 
+/* Chat input FULL control */
+section[data-testid="stChatInput"] textarea {
+    background: rgba(0, 0, 0, 0.6) !important;
+    color: white !important;
+    border: 1px solid #00ffcc !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+}
+
+/* Remove red focus border */
+section[data-testid="stChatInput"] textarea:focus {
+    border: 1px solid #00ffcc !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Placeholder text */
+section[data-testid="stChatInput"] textarea::placeholder {
+    color: #bbbbbb !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
