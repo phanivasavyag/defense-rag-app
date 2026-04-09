@@ -50,33 +50,45 @@ def load_pipeline():
 
 qa = load_pipeline()
 
-# Input
-query = st.text_input("Ask a question:")
+# Chat memory
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-# Output
+# Chat input
+query = st.chat_input("Ask your question...")
+
+# Handle query
 if query:
     with st.spinner("Searching..."):
         result = qa(query)
 
-        # Answer
-        st.subheader("Answer")
-        st.markdown(
-            f'<div class="answer-box">{result["result"]}</div>',
-            unsafe_allow_html=True
-        )
+        st.session_state.chat_history.append({
+            "question": query,
+            "answer": result["result"],
+            "sources": result["source_documents"]
+        })
 
-        # Sources (FIXED - NO DUPLICATES)
-        st.subheader("Sources")
+# Display chat history
+for chat in st.session_state.chat_history:
+    st.markdown(f"### You: {chat['question']}")
 
-        if result["source_documents"]:
-            shown = set()   # ✅ removes duplicates
+    st.markdown(
+        f'<div class="answer-box">{chat["answer"]}</div>',
+        unsafe_allow_html=True
+    )
 
-            for doc in result["source_documents"]:
-                source = doc.metadata.get("source", "Unknown")
+    st.markdown("Sources:")
 
-                if source not in shown:
-                    st.markdown(f"• **{source}**")
-                    shown.add(source)
+    if chat["sources"]:
+        shown = set()
 
-        else:
-            st.write("No sources found.")
+        for doc in chat["sources"]:
+            source = doc.metadata.get("source", "Unknown")
+
+            if source not in shown:
+                st.markdown(f"- {source}")
+                shown.add(source)
+    else:
+        st.write("No sources found.")
+
+    st.markdown("---")
